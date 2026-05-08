@@ -1,0 +1,223 @@
+{
+    "info": {
+        "name": "School Management API",
+        "description": "API collection for School Management System - Add schools and list them sorted by proximity.",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+        {
+            "name": "Health Check",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": "{{base_url}}/",
+                    "host": ["{{base_url}}"],
+                    "path": [""]
+                }
+            },
+            "response": [
+                {
+                    "name": "Health Check - Success",
+                    "originalRequest": {
+                        "method": "GET",
+                        "url": {
+                            "raw": "{{base_url}}/",
+                            "host": ["{{base_url}}"],
+                            "path": [""]
+                        }
+                    },
+                    "status": "OK",
+                    "code": 200,
+                    "body": "{\n    \"status\": \"success\",\n    \"message\": \"School Management API is running\",\n    \"endpoints\": {\n        \"addSchool\": \"POST /addSchool\",\n        \"listSchools\": \"GET /listSchools?latitude=<lat>&longitude=<lng>\"\n    }\n}"
+                }
+            ]
+        },
+        {
+            "name": "Add School",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n    \"name\": \"Delhi Public School\",\n    \"address\": \"Sector 24, Mathura Road, New Delhi\",\n    \"latitude\": 28.5245,\n    \"longitude\": 77.2065\n}"
+                },
+                "url": {
+                    "raw": "{{base_url}}/addSchool",
+                    "host": ["{{base_url}}"],
+                    "path": ["addSchool"]
+                }
+            },
+            "response": [
+                {
+                    "name": "Add School - Success",
+                    "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"name\": \"Delhi Public School\",\n    \"address\": \"Sector 24, Mathura Road, New Delhi\",\n    \"latitude\": 28.5245,\n    \"longitude\": 77.2065\n}"
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/addSchool",
+                            "host": ["{{base_url}}"],
+                            "path": ["addSchool"]
+                        }
+                    },
+                    "status": "Created",
+                    "code": 201,
+                    "body": "{\n    \"status\": \"success\",\n    \"message\": \"School added successfully\",\n    \"data\": {\n        \"id\": 1,\n        \"name\": \"Delhi Public School\",\n        \"address\": \"Sector 24, Mathura Road, New Delhi\",\n        \"latitude\": 28.5245,\n        \"longitude\": 77.2065\n    }\n}"
+                },
+                {
+                    "name": "Add School - Validation Error",
+                    "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"name\": \"\",\n    \"address\": \"Some Address\",\n    \"latitude\": 28.5245,\n    \"longitude\": 77.2065\n}"
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/addSchool",
+                            "host": ["{{base_url}}"],
+                            "path": ["addSchool"]
+                        }
+                    },
+                    "status": "Bad Request",
+                    "code": 400,
+                    "body": "{\n    \"status\": \"error\",\n    \"message\": \"Name must be a non-empty string\"\n}"
+                }
+            ]
+        },
+        {
+            "name": "Add School - Example 2",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n    \"name\": \"St. Mary's Convent School\",\n    \"address\": \"Civil Lines, Prayagraj, UP\",\n    \"latitude\": 25.4358,\n    \"longitude\": 81.8463\n}"
+                },
+                "url": {
+                    "raw": "{{base_url}}/addSchool",
+                    "host": ["{{base_url}}"],
+                    "path": ["addSchool"]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Add School - Example 3",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n    \"name\": \"Kendriya Vidyalaya\",\n    \"address\": \"IIT Campus, Kanpur, UP\",\n    \"latitude\": 26.5123,\n    \"longitude\": 80.2329\n}"
+                },
+                "url": {
+                    "raw": "{{base_url}}/addSchool",
+                    "host": ["{{base_url}}"],
+                    "path": ["addSchool"]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "List Schools (Sorted by Proximity)",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": "{{base_url}}/listSchools?latitude=28.6139&longitude=77.2090",
+                    "host": ["{{base_url}}"],
+                    "path": ["listSchools"],
+                    "query": [
+                        {
+                            "key": "latitude",
+                            "value": "28.6139",
+                            "description": "User's latitude (e.g., New Delhi)"
+                        },
+                        {
+                            "key": "longitude",
+                            "value": "77.2090",
+                            "description": "User's longitude (e.g., New Delhi)"
+                        }
+                    ]
+                }
+            },
+            "response": [
+                {
+                    "name": "List Schools - Success",
+                    "originalRequest": {
+                        "method": "GET",
+                        "url": {
+                            "raw": "{{base_url}}/listSchools?latitude=28.6139&longitude=77.2090",
+                            "host": ["{{base_url}}"],
+                            "path": ["listSchools"],
+                            "query": [
+                                {
+                                    "key": "latitude",
+                                    "value": "28.6139"
+                                },
+                                {
+                                    "key": "longitude",
+                                    "value": "77.2090"
+                                }
+                            ]
+                        }
+                    },
+                    "status": "OK",
+                    "code": 200,
+                    "body": "{\n    \"status\": \"success\",\n    \"message\": \"Found 3 school(s)\",\n    \"data\": [\n        {\n            \"id\": 1,\n            \"name\": \"Delhi Public School\",\n            \"address\": \"Sector 24, Mathura Road, New Delhi\",\n            \"latitude\": 28.5245,\n            \"longitude\": 77.2065,\n            \"distance\": 9.94\n        },\n        {\n            \"id\": 3,\n            \"name\": \"Kendriya Vidyalaya\",\n            \"address\": \"IIT Campus, Kanpur, UP\",\n            \"latitude\": 26.5123,\n            \"longitude\": 80.2329,\n            \"distance\": 387.12\n        },\n        {\n            \"id\": 2,\n            \"name\": \"St. Mary's Convent School\",\n            \"address\": \"Civil Lines, Prayagraj, UP\",\n            \"latitude\": 25.4358,\n            \"longitude\": 81.8463,\n            \"distance\": 590.45\n        }\n    ]\n}"
+                },
+                {
+                    "name": "List Schools - Missing Parameters",
+                    "originalRequest": {
+                        "method": "GET",
+                        "url": {
+                            "raw": "{{base_url}}/listSchools",
+                            "host": ["{{base_url}}"],
+                            "path": ["listSchools"]
+                        }
+                    },
+                    "status": "Bad Request",
+                    "code": 400,
+                    "body": "{\n    \"status\": \"error\",\n    \"message\": \"Both latitude and longitude query parameters are required\"\n}"
+                }
+            ]
+        }
+    ],
+    "variable": [
+        {
+            "key": "base_url",
+            "value": "http://localhost:3000",
+            "type": "string"
+        }
+    ]
+}
