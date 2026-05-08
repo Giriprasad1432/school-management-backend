@@ -216,7 +216,7 @@
     "variable": [
         {
             "key": "base_url",
-            "value": "http://localhost:3000",
+            "value": "https://school-management-backend-u5vg.onrender.com",
             "type": "string"
         }
     ]
